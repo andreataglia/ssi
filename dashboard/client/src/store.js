@@ -23,7 +23,7 @@ export default new Vuex.Store({
     },
     lastUpdate: '123455688',
     credentials: [{
-        "iat": 1562077338339,
+        "iat": 1562077338338,
         "exp": 1566950400000,
         "sub": "did:pistis:0xF8007e77c86c62184175455f2D97BfB1e3E350ea",
         "iss": null,
@@ -101,7 +101,7 @@ export default new Vuex.Store({
         }
       },
       {
-        "iat": 1562077338339,
+        "iat": 1562077338340,
         "exp": 1577750400000,
         "sub": "did:ethr:0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5",
         "iss": null,
@@ -188,7 +188,7 @@ export default new Vuex.Store({
       state.pendingOperations.mainOperationLoading = false
       state.identity = identity
       state.credentials.map(cred => cred.iss = 'did:pistis:' + identity)
-      updateMinQuorum()
+      //updateMinQuorum()
       updatePermissions()
     },
     SOCKET_pendingOperations(state, payload) {
@@ -212,7 +212,7 @@ export default new Vuex.Store({
         updateConfirmPendingOperations()
         state.pendingOperations.pistisDIDRegistry.map(op => op.loading = false)
         state.pendingOperations.credentialStatusRegistry.map(op => op.loading = false)
-      }, 5000)
+      }, 10000)
     },
     updatePendingOperations(state, payload) {
       let op = state.pendingOperations[payload.type].find(op => op.opId === payload.opId)
