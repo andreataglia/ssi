@@ -40,13 +40,14 @@ The project which I'm delivering for the Consensys Course is not the complete pr
 ## User Stories
 
 An University wants to integrate their systems with this dashboard in order to start realising Diploma Degree as Verifiable Credentials. They want their Verifiable Credentials to be signed by a unique DID, but at the same time they want to track which University employer is delivering each Verifiable Credential. Hence, they need a way to let their authorized employers sign verifiable credential on the behalf of the University.
-So an Univerity employer, possibly the University rector create a new Ethereum account which will be the University DID. Then it sets this identity into the dashboard. When he opens the dashboard for the first time it will have a single identity authorized to act on behalf of the univesity which is the DID of the univesity set before. 
+So an University employer, possibly the University rector create a new Ethereum account which will be the University DID. Then it sets this identity into the dashboard. When he opens the dashboard for the first time it will have a single identity authorized to act on behalf of the univesity which is the DID of the university set before. 
 Now, in the Delegates Management page he can see the delegates with their permissions and add or revoke new delegates and watch the list of delegates being updated. As soon as he have two delegates, in order to add or revoke any delegate he will need the confirmation of the another delegate, this is to avoid that someone can become the unique owner of the University DID. 
 If the employer has the permission for the Credential Status Management, in the Credential Management page can see the list of credentials issued by the University and check or change their status. If there is more than one delegates with the Credential Status Mangement permission, then the minimum quorum to change the status of a credential is 2, hence one og the other delegates need to confirm the operation.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine testing purposes. 
+We dockerized the client and the server as encouraged by the project instructions so it should be straightforward for you guys to have it running.
 
 ### Prerequisites
 
@@ -59,9 +60,13 @@ A step by step series of examples that tell you how to get a development env run
 
 Say what the step will be
 
+Pull the docker images from Docker Hub:
+
 ```
-Give the example
+docker run --detach -e ADDRESS="0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5" -e PRIVATEKEY="f5d0ead35c21a2b945be8577cd19e13080fe1cf1769012d9c76c4f7c09e68f92" andreataglia/ssi-consensys-backend:0.3
 ```
+
+
 
 And repeat
 
