@@ -51,10 +51,6 @@ Every DID points to a DID Document which is the serialization of the data associ
 An identity starts with no delegates, and the only working address is the one who matches the identity itself, which has full permissions over that identity. That is indeed a sort of super user for that identity and, once revoked from anywhere it is completely removed from that identity and can never get back control over it. 
 As soon as the identity adds a delegate with a certain permission, the quorum for that kind of operation goes to 2 and from that point onwards 2 confirmations are needed before actual execution.
 
-### Final note
-
-The project which I'm delivering for the Consensys Course is not the complete project but just a part of it. More precisely it is just the two additions on top of the uPort open identity system stated before. It lacks all the other parts like the Verifiable Credential sharing, issuing and verification process. 
-
 ## User Stories
 
 An University wants to integrate their systems with this dashboard in order to start releasing Diploma Degree as Verifiable Credentials. They want their Verifiable Credentials to be signed by a unique DID, but at the same time they want to track which University employer is delivering each Verifiable Credential. Hence, they need a way to let their authorized employers sign verifiable credential on the behalf of the University.
@@ -75,11 +71,11 @@ I dockerized the client and the server as encouraged by the project instructions
 
 ### Installing
 
-#### Dockerized version
-Start docker.
-
 If you don't already have it you need to create a Metamask account with whom you can interact with the dashboard. 
 Switch to Ropsten testnet. You will need some ether to interact with the contract. Also you should need at least two addresses with some Ether. You can get some from the Ropsten Faucet [here](https://faucet.ropsten.be/).
+
+#### Dockerized version
+Start docker.
 
 Now pull the docker images from the Docker Hub:
 
@@ -109,7 +105,10 @@ The server is a node app. Run it with:
 ```
 cd dashboard/server
 npm i
-node start.js
+cd pistis 
+npm i 
+cd ..
+ADDRESS="<YOUR ADDRESS>" -e PRIVATEKEY="<THE PRIVATE KEY OF YOUR ADDRESS>" node start.js
 ```
 
 Client is a VueJS app, run it with:
@@ -135,7 +134,7 @@ I suggest you try the following, as shown in the video:
 1. Add a new delegate with Delegate Mgmt permission. The operation will be executed straight away as there is no quorum enabled yet. 
 2. Now the quorum is set to 2, so an operation needs to confirmation before being executed. Let's try this out by adding a new delegate with CredentialStatus Mgmt permission. 
 3. Switch to the other address and confirm the operation. Beware, Ropsten is slow, like really slow sometime... wait for the spinner to stop. Sorry about that.
-4. Then go the Credential Management and try changing the status of a credential, maybe the University Degree.
+4. Then go the Credential Management and try changing the status of a credential.
 5. Switch to another address with permission for CredentialStatus Mgmt and confirm the operation.
 6. Press check status. It will contact the smart contract and fetch the status of the credential.
 
