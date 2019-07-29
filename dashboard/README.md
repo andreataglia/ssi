@@ -64,8 +64,8 @@ We dockerized the client and the server as encouraged by the project instruction
 
 ### Prerequisites
 
-- Docker, you can install it [here](https://www.docker.com/get-started)
-- Metamask extension, you can download it [here](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=it)
+- Docker, you can install it from [here](https://www.docker.com/get-started)
+- Metamask extension, you can download it from [here](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=it)
 
 ### Installing
 
@@ -94,16 +94,28 @@ Now navigate http://localhost:8080 where you should see the home page of the pro
 You should now be asked to give the page permission to interact with metamask.
 If everything is fine and your logged-in with the same account you gave to docker as params you should see the two tabs on the left side menu as green.
 
-### Getting around in the project
+### Getting around in the demo project
 
-At the top you should see the identity with which you have initialized the backend. On the left you should see the menu with the address with whom you are logged in, and the three main page of the application:
+At the top you see the DID, that is the identity you used to initialize the backend. On the left you should see the menu with the address with whom you are logged in, and the 3 pages of the application:
 
 - Home, just an home page
 - Credential Management, where you can set or check the status of a list of Verifiable Credentials
 - Delegates Management, where you can add or revoke new delegates and check which delegate has what permissions
 
-You can access these pages only if you have the right permission. Try add new delegates with different permissions and to revoke Verifiable Credentials. 
-Remeber when you have more than one delegates then you need two delegates to confirm an operation. I suggest you to create more than one metamask account and spread your intial test ether with the others.
+You can access these pages only if you have the right permission, the color of the links will change accordingly. 
+Once you are logged in with the primary address, the one which is the same as the identity, you have full permission, it is like a super user for that identity.
+
+I suggest you try the following, as shown in the video:
+1. Add a new delegate with Delegate Mgmt permission. The operation will be executed straight away as there is no quorum enabled yet. 
+2. Now the quorum is set to 2, so an operation needs to confirmation before being executed. Let's try this out by adding a new delegate with CredentialStatus Mgmt permission. 
+3. Switch to the other address and confirm the operation. Beware, Ropsten is slow, like really slow sometime... wait for the spinner to stop. Sorry about that.
+4. Then go the Credential Management and try changing the status of a credential, maybe the University Degree.
+5. Switch to another address with permission for CredentialStatus Mgmt and confirm the operation.
+6. Press check status. It will contact the smart contract and fetch the status of the credential.
+
+Play around!
+
+Hope you like it :)
 
 ## Testing the Smart Contracts
 
