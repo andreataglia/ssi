@@ -12,14 +12,14 @@ export function parseDID(did) {
 
 export function parseDIDDOcumentForDelegates(doc){
   let delegates = {
-    authentication: [],
+    delegatesMgmt: [],
     statusRegMgmt: [],
-    tcmMgmt: []
   }
-  if(doc.authentication){
-    doc.authentication.map(delegate => {
+  let identity = parseDID(doc.id).id
+  if(doc.delegatesMgmt){
+    doc.delegatesMgmt.map(delegate => {
       var parsed = parseDID(delegate.publicKey)
-      delegates.authentication.push(parsed.id.toLowerCase())
+      delegates.delegatesMgmt.push(parsed.id.toLowerCase())
     })
   }
   if(doc.statusRegMgmt){
@@ -27,11 +27,6 @@ export function parseDIDDOcumentForDelegates(doc){
       delegates.statusRegMgmt.push(delegate.ethereumAddress.toLowerCase())
     })
   }
-  if(doc.tcmMgmt){
-    doc.tcmMgmt.map(delegate => {
-      delegates.tcmMgmt.push(delegate.ethereumAddress.toLowerCase())
-    })
-  }
 
-  return delegates
+  return {delegates,identity}
 }

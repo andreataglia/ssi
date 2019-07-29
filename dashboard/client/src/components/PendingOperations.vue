@@ -6,7 +6,12 @@
 		<v-card>
 			<v-card-text class="grey lighten-3">
 				<v-list>
-					<v-list-tile v-for="(operation, index) in operationsToShow" :key="operation.opId">
+					<v-list-tile v-if="operationsToShow.length === 0">
+						<v-list-tile-content>
+							No operations yet
+						</v-list-tile-content>
+					</v-list-tile>
+					<v-list-tile v-for="(operation) in operationsToShow" :key="operation.opId">
 						<v-list-tile-content>
 							<div> operation id: <b> {{operation.pendingInfo}} </b> </div>
 						</v-list-tile-content>
@@ -24,7 +29,7 @@
 								</v-btn>
 							</v-layout>
 						</v-list-tile-action>
-					</v-list-tile>
+						</v-list-tile>
 				</v-list>
 			</v-card-text>
 		</v-card>
@@ -83,11 +88,9 @@
 			mapContractToType: function (contract) {
 				switch (contract) {
 					case 'pistisDIDRegistry':
-						return 'authentication';
+						return 'delegatesMgmt';
 					case 'credentialStatusRegistry':
 						return 'statusRegMgmt';
-					case 'TCM':
-						return 'tcmMgmt';
 					default:
 						return 'no matching contract'
 				}

@@ -5,161 +5,154 @@ import pollWeb3 from './utils/pollWeb3'
 import {
   parseDIDDOcumentForDelegates
 } from './utils/parseDID'
-import {updateConfirmPendingOperations, updateMinQuorum, updatePermissions} from './utils/updateInfoPerAccount';
+import {
+  updateConfirmPendingOperations,
+  updateMinQuorum,
+  updatePermissions
+} from './utils/updateInfoPerAccount';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    identity: '0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5',
+    identity: null,
     contracts: {
       multiSigOperations: null,
       pistisDIDRegistry: null,
       credentialStatusRegistry: null,
-      TCM: null,
     },
     lastUpdate: '123455688',
     credentials: [{
-        iat: '1562000791383',
-        iss: '3984324',
-        csu: {
-          name: 'Cred1'
-        }
-      },
-      {
-        iat: '1562000793343',
-        iss: '3984324',
-        csu: {
-          name: 'Cred2'
-        }
-      },
-      {
         "iat": 1562077338339,
-        "exp": 1,
-        "sub": "did:ethr:0x45",
-        "iss": "did:ethr:0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5",
+        "exp": 1566950400000,
+        "sub": "did:pistis:0xF8007e77c86c62184175455f2D97BfB1e3E350ea",
+        "iss": null,
         "csu": {
-          "context": "https://schema.org",
-          "name": "My Address",
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "streeAddress": "strada cà cornuta, 2"
-          }
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "E-ID",
+          "givenName": "Andrea",
+          "familyName": "Taglia",
+          "gender": "male"
         },
         "csl": {
           "id": 0,
           "type": "Pistis-CSL/v1.0"
         }
+      },
+      {
+        "iat": 1562077338339,
+        "exp": 1564272000000,
+        "sub": "did:pistis:0x0xA7B225557F9328C47FA1F601FdF44a793Fe85aa3",
+        "iss": null,
+        "csu": {
+          "@context": "http://schema.org/",
+          "@type": "ItemList",
+          "name": "Exams",
+          "exam0": {
+            "@type": "Course",
+            "courseCode": "F300",
+            "name": "Foundations of Informatics",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "28"
+            }
+          },
+          "exam1": {
+            "@type": "Course",
+            "courseCode": "F400",
+            "name": "Calculus 1",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "30L"
+            }
+          },
+          "exam2": {
+            "@type": "Course",
+            "courseCode": "F500",
+            "name": "Network Security",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "25"
+            }
+          },
+          "exam3": {
+            "@type": "Course",
+            "courseCode": "F604",
+            "name": "Physics",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "18"
+            }
+          },
+          "exam4": {
+            "@type": "Course",
+            "courseCode": "C201",
+            "name": "Computer Architecture",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "30"
+            }
+          }
+        },
+        "csl": {
+          "id": 1,
+          "type": "Pistis-CSL/v1.0"
+        }
+      },
+      {
+        "iat": 1562077338339,
+        "exp": 1577750400000,
+        "sub": "did:ethr:0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5",
+        "iss": null,
+        "csu": {
+          "context": "https://schema.org",
+          "@type": "EducationalOccupationalCredential",
+          "name": "University Degree",
+          "credentialCategory": {
+            "@type": "DefinedTerm",
+            "name": "Computer Science Engineering",
+            "termCode": "CSE"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "contentUrl": "https://scontent-frt3-2.cdninstagram.com/vp/b80f33085ee7a4b1e4794abaa25172be/5D900EC9/t51.2885-15/e35/21980698_145857142687698_5460493589022769152_n.jpg?_nc_ht=scontent-frt3-2.cdninstagram.com&se=8&ig_cache_key=MTYxMjk1MjE5MDE0MTIyODE1OQ%3D%3D.2",
+            "encoding": "CF0BF0055AF44C1DFAC9FB48080DE93F6C1F54A220127C7EC37CA9E8898DB00A",
+            "encodingFormat": "SHA256"
+          },
+          "educationalLevel": {
+            "@type": "DefinedTerm",
+            "name": "University Degree",
+            "inDefinedTermSet": "https://www.eu-degrees.eu/degrees"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "110"
+          }
+
+        },
+        "csl": {
+          "id": 2,
+          "type": "Pistis-CSL/v1.0"
+        }
       }
     ],
-    tcl: {
-      "@context": "pistis-tcl/v1",
-      "tcl": [{
-          src: "this",
-          did: "did:ethr:0x09e3e5a2bfb3acaf00a52b458ef119801be0fdaf",
-          ent: {
-            type: "Person",
-            name: "Doctor Who",
-            familyName: "Who",
-            givenName: "Jake",
-            affiliation: {
-              type: "Hospital",
-              name: "St. Luke's Hospital",
-              address: {
-                type: "Postal Address",
-                streetAddress: "St. Lukes Square",
-                addressLocality: "G'Mangia Pieta",
-                addressRegion: "PTA",
-                postalCode: "1010"
-              }
-            }
-          }
-        },
-        {
-          src: "this",
-          did: "did:ethr:0xdko03aw0j76f894824rt2cdef7a2018dbe32md97",
-          ent: {
-            type: "Person",
-            name: "Doctor Abela",
-            familyName: "Mark",
-            givenName: "Abela",
-            affiliation: {
-              type: "Hospital",
-              name: "St. Luke's Hospital",
-              address: {
-                type: "Postal Address",
-                streetAddress: "St. Lukes Square",
-                addressLocality: "G'Mangia Pieta",
-                addressRegion: "PTA",
-                postalCode: "1010"
-              }
-            }
-          }
-        },
-        {
-          src: "this",
-          did: "did:ethr:0xbc3ae59bc76f894822622cdef7a2018dbe353840",
-          ent: {
-            type: "MedicalOrganization",
-            name: "MyHealth",
-            url: "https://myhealth-ng.gov.mt/"
-          }
-        },
-        {
-          src: "this",
-          did: "did:ethr:0xeee6f3258a5c92e4a6153a27e251312fe95a19ae",
-          ent: {
-            type: "Organization",
-            name: "IdentityMalta",
-            url: "https://identitymalta.com"
-          }
-        },
-        {
-          src: "https://www.myhealth-ng.gov.mt/trsuted-contacts-list",
-          did: null,
-          ent: null
-        }
-      ]
-    },
     delegates: {
-      authentication: [],
+      delegatesMgmt: [],
       statusRegMgmt: [],
-      tcmMgmt: []
     },
     pendingOperations: {
       pistisDIDRegistry: [],
       credentialStatusRegistry: [],
-      TCM: [],
       mainOperationLoading: false
     },
-    minQuorum:{
+    minQuorum: {
       pistisDIDRegistry: 2,
       credentialStatusRegistry: 2,
-      TCM: 2
     },
     permission: {
-      authentication: false,
+      delegatesMgmt: false,
       statusRegMgmt: false,
-      tcmMgmt: false
-    },
-    vcBuilder: {
-      credential: {},
-      credentialBackup: {
-        iat: new Date().getTime(),
-        exp: 1,
-        sub: "did:ethr:0x45",
-        iss: "did:ethr:0x9fe146cd95b4ff6aa039bf075c889e6e47f8bd18",
-        csu: {
-          context: "https://schema.org",
-          name: "My new credential"
-        },
-        csl: {
-          id: 0,
-          type: "Pistis-CSL/v1.0"
-        }
-      },
-      credentialData: []
     },
     web3: {
       web3Instance: null,
@@ -170,19 +163,6 @@ export default new Vuex.Store({
     addVC(state, payload) {
       state.credentials.push(payload.newVC)
     },
-    editTCL(state, payload) {
-      state.tcl = payload.tcl
-    },
-    updateVC(state, cred) {
-      console.log("updating", cred)
-      state.vcBuilder.credential = cred
-    },
-    updateData(state, data) {
-      state.vcBuilder.credentialData = [...state.vcBuilder.credentialData, data]
-    },
-    deleteData(state) {
-      state.vcBuilder.credentialData = []
-    },
     registerWeb3Instance(state, payload) {
       console.log('registerWeb3instance Mutation being executed', payload)
       let result = payload
@@ -190,26 +170,28 @@ export default new Vuex.Store({
       web3Copy.web3Instance = result.web3
       state.web3 = web3Copy
     },
-    pollWeb3Instance (state, payload) {
+    pollWeb3Instance(state, payload) {
       console.log('pollWeb3Instance mutation being executed', payload)
       state.web3.address = payload.toLowerCase()
     },
-    SOCKET_contractsAddress(state, payload){
-      state.contracts.TCM = payload.TCM;
+    SOCKET_contractsAddress(state, payload) {
       state.contracts.credentialStatusRegistry = payload.credentialStatusRegistry;
       state.contracts.multiSigOperations = payload.multiSigOperations;
       state.contracts.pistisDIDRegistry = payload.pistisDIDRegistry;
     },
-    SOCKET_DIDDocument(state, payload){
-      const delegates = parseDIDDOcumentForDelegates(payload)
+    SOCKET_DIDDocument(state, payload) {
+      const {
+        delegates,
+        identity
+      } = parseDIDDOcumentForDelegates(payload)
       state.delegates = delegates
       state.pendingOperations.mainOperationLoading = false
-      console.log("DEEEEEEELEATEDSSS", state.delegates)
+      state.identity = identity
+      state.credentials.map(cred => cred.iss = 'did:pistis:' + identity)
       updateMinQuorum()
       updatePermissions()
     },
-    SOCKET_pendingOperations(state, payload){
-      state.pendingOperations.TCM = []
+    SOCKET_pendingOperations(state, payload) {
       state.pendingOperations.credentialStatusRegistry = []
       state.pendingOperations.pistisDIDRegistry = []
       payload.map(op => {
@@ -219,42 +201,39 @@ export default new Vuex.Store({
         res.confirmationsCount = op.confirmationsCount
         res.alreadyConfirmed = false
         res.loading = true
-        if(op.executor === state.contracts.pistisDIDRegistry){
+        if (op.executor === state.contracts.pistisDIDRegistry) {
           state.pendingOperations.pistisDIDRegistry.push(res)
-        } else if(op.executor === state.contracts.credentialStatusRegistry){
+        } else if (op.executor === state.contracts.credentialStatusRegistry) {
           state.pendingOperations.credentialStatusRegistry.push(res)
-        } else {
-          state.pendingOperations.TCM.push(res)
         }
       })
       state.pendingOperations.mainOperationLoading = false
-      setTimeout(()=> {
+      setTimeout(() => {
         updateConfirmPendingOperations()
         state.pendingOperations.pistisDIDRegistry.map(op => op.loading = false)
         state.pendingOperations.credentialStatusRegistry.map(op => op.loading = false)
-        state.pendingOperations.TCM.map(op => op.loading = false)
       }, 5000)
     },
-    updatePendingOperations(state, payload){
+    updatePendingOperations(state, payload) {
       let op = state.pendingOperations[payload.type].find(op => op.opId === payload.opId)
-      if(payload.hasOwnProperty('result')){
+      if (payload.hasOwnProperty('result')) {
         op.alreadyConfirmed = payload.result
       }
-      if(payload.hasOwnProperty('loading')){
+      if (payload.hasOwnProperty('loading')) {
         op.loading = payload.loading
       }
     },
-    updatePermissions(state, payload){
+    updatePermissions(state, payload) {
       state.permission = payload
     },
-    setMainOperationLoading(state,payload){
+    setMainOperationLoading(state, payload) {
       state.pendingOperations.mainOperationLoading = payload
     },
-    setMinQuorum(state, payload){
+    setMinQuorum(state, payload) {
       state.minQuorum = payload
     },
-    stopLoading(state, payload){
-      if(payload.type === 'mainOperationLoading'){
+    stopLoading(state, payload) {
+      if (payload.type === 'mainOperationLoading') {
         state.pendingOperations[payload.type] = false
       } else {
         let op = state.pendingOperations[payload.type].find(el => el.opId === payload.opId)
@@ -274,7 +253,9 @@ export default new Vuex.Store({
       }
       pollWeb3()
     },
-    pollWeb3 ({commit}, payload) {
+    pollWeb3({
+      commit
+    }, payload) {
       console.log('pollWeb3 action being executed')
       commit('pollWeb3Instance', payload)
     },

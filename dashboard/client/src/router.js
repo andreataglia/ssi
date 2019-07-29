@@ -12,12 +12,6 @@ export default new Router({
       component: Home
     },
     {
-      path: '/tcm',
-      name: 'tcm',
-      component: () => import('./views/TCM.vue'),
-      meta: {permissionRequired: 'tcmMgmt'}
-    },
-    {
       path: '/credentialsmanagement',
       name: 'credentialsmanagement',
       component: () => import('./views/CredentialsManagement.vue'),
@@ -27,7 +21,7 @@ export default new Router({
       path: '/delegatesmanagement',
       name: 'delegatesmanagement',
       component: () => import('./views/DelegatesManagement.vue'),
-      meta: {permissionRequired: 'authentication'}
+      meta: {permissionRequired: 'delegatesMgmt'}
     }
   ]
 })
