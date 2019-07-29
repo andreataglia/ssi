@@ -86,10 +86,9 @@ docker pull ....
 
 Run the containers for the the server and the client like below:
 ```
-docker run --detach -e ADDRESS="<YOUR ADDRESS>" -e PRIVATEKEY="<THE PRIVATE KEY OF YOUR ADDRESS>" andreataglia/ssi-consensys-backend:0.3
+docker run -e ADDRESS="0xF8007e77c86c62184175455f2D97BfB1e3E350ea" -e PRIVATEKEY="EA0A0787245AFB3E1256D733682941506200B468839FBA3176B1857302697A18" --rm --name backend andreataglia/ssi-consensys-backend:latest
 
-docker run -p 8080:8080
---rm --name frontend andreataglia/ssi-consensys-frontend:1.0
+docker run -p 8080:8080 --rm --name frontend andreataglia/ssi-consensys-frontend:latest
 ```
 
 Now navigate http://localhost:8080 where you should see the home page of the project.
