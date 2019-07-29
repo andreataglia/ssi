@@ -59,7 +59,7 @@ If the employer has the permission for the Credential Status Management, in the 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine so you can test the contracts and run the project. 
 We dockerized the client and the server as encouraged by the project instructions so it should be straightforward for you guys to have it running.
 
 ### Prerequisites
@@ -69,14 +69,19 @@ We dockerized the client and the server as encouraged by the project instruction
 
 ### Installing
 
-Start the docker app.
+Start docker.
 
 If you don't already have it you need to create a Metamask account with whom you can interact with the dashboard. 
-Switch to Ropsten testnet.
-Then you need some ether from the Ropsten Faucet. If you don't already have it just claim one [here](https://faucet.ropsten.be/)
+Switch to Ropsten testnet. You will need some ether to interact with the contract. Also you should need at least two addresses with some Ether. You can get some from the Ropsten Faucet [here](https://faucet.ropsten.be/).
 
-Pull the docker images from Docker Hub:
+Now pull the docker images from the Docker Hub:
 
+```
+docker pull ....
+docker pull ....
+```
+
+Run the 
 ```
 docker run --detach -e ADDRESS="0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5" -e PRIVATEKEY="f5d0ead35c21a2b945be8577cd19e13080fe1cf1769012d9c76c4f7c09e68f92" andreataglia/ssi-consensys-backend:0.3
 ```
@@ -111,19 +116,23 @@ At the top you should see the identity with which you have initialized the backe
 
 - Home, just an home page
 - Credential Management, where you can set or check the status of a list of Verifiable Credentials
-- Delegates Management, where you can add or revoke new delegates
+- Delegates Management, where you can add or revoke new delegates and check which delegate has what permissions
 
 You can access these pages only if you have the right permission. Try add new delegates with different permissions and to revoke Verifiable Credentials. 
 Remeber when you have more than one delegates then you need two delegates to confirm an operation. I suggest you to create more than one metamask account and spread your intial test ether with the others.
 
-## Running the tests
-
-If you want to test the smart contracts, you just need to go to ssi-smart-contracts directory and execute the following commands:
+## Testing the Smart Contracts
 
 ```
+cd smart-contracts
 truffle dev
-truffle test
 ```
+
+Within the truffle console
+```
+test
+```
+The three main contracts have been tested, each with its own javascript tests.
 
 ## Authors
 
