@@ -81,36 +81,20 @@ docker pull ....
 docker pull ....
 ```
 
-Run the 
+Run the containers for the the server and the client like below:
 ```
-docker run --detach -e ADDRESS="0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5" -e PRIVATEKEY="f5d0ead35c21a2b945be8577cd19e13080fe1cf1769012d9c76c4f7c09e68f92" andreataglia/ssi-consensys-backend:0.3
-```
-
-
-
-And repeat
-
-```
-docker pull andreataglia/ssi-consensys-backend
-docker run -it -p 8080:8080 --rm --name dockerized-client andreataglia/ssi-consensys-backend:v0.1 --address <YOUR NEW METAMASK ACCOUNT> --pk <THE PRIVATE KEY OF YOU ADDRESS>
+docker run --detach -e ADDRESS="<YOUR ADDRESS>" -e PRIVATEKEY="<THE PRIVATE KEY OF YOUR ADDRESS>" andreataglia/ssi-consensys-backend:0.3
 
 docker run -p 8080:8080
 --rm --name frontend andreataglia/ssi-consensys-frontend:1.0
-
-docker run -e ADDRESS="0x85FD638BD834Fa28FFa70bf29c6BF8585aE7d6a5" -e PRIVATEKEY="f5d0ead35c21a2b945be8577cd19e13080fe1cf1769012d9c76c4f7c09e68f92" -p 3000:3000 andreataglia/ssi-consensys-backend:1.0
-```
-
-You could add --detach flag if you don't want to be bothered by the logs.
-
-
-In a new terminal window run the following command to start the frontend  
-
-```
-docker pull andreataglia/ssi-consensys-frontend
-docker run -it -p 8080:8080 --rm --name dockerized-client andreataglia/ssi-consensys-frontend:v0.1
 ```
 
 Now navigate http://localhost:8080 where you should see the home page of the project.
+
+You should now be asked to give the page permission to interact with metamask.
+If everything is fine and your logged-in with the same account you gave to docker as params you should see the two tabs on the left side menu as green.
+
+### Getting around in the project
 
 At the top you should see the identity with which you have initialized the backend. On the left you should see the menu with the address with whom you are logged in, and the three main page of the application:
 
