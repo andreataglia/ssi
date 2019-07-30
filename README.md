@@ -15,7 +15,7 @@ The project includes:
 - A Web UI
 - A Web Server (including DID Resolver implementation)
 
-## General Concept to know
+## Few preliminary concepts
 
 ### Verifiable Credentials
 
@@ -81,19 +81,12 @@ Start docker.
 If you don't already have it you need to create a Metamask account with whom you can interact with the dashboard. 
 Switch to Ropsten testnet. You will need some ether to interact with the contract. Also you should need at least two addresses with some Ether. You can get some from the Ropsten Faucet [here](https://faucet.ropsten.be/).
 
-Now pull the docker images from the Docker Hub:
 
+Docker images should be automatically downloaded from Docker Hub when you run the commands below. Run the containers for the the server and the client:
 ```
-docker pull ....
-docker pull ....
-```
+docker run -p 3000:3000 -e ADDRESS="<YOUR ADDRESS>" -e PRIVATEKEY="<THE PRIVATE KEY OF YOUR ADDRESS>" --rm --name backend andreataglia/ssi-consensys-backend:latest
 
-Run the containers for the the server and the client like below:
-```
-docker run --detach -e ADDRESS="<YOUR ADDRESS>" -e PRIVATEKEY="<THE PRIVATE KEY OF YOUR ADDRESS>" andreataglia/ssi-consensys-backend:0.3
-
-docker run -p 8080:8080
---rm --name frontend andreataglia/ssi-consensys-frontend:1.0
+docker run -p 8080:8080 --rm --name frontend andreataglia/ssi-consensys-frontend:latest
 ```
 
 Now navigate http://localhost:8080 where you should see the home page of the project.
