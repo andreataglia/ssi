@@ -1,0 +1,53 @@
+{
+  "@context": "itut-tcm/v1",
+  "tcl": [{
+      "src": "this",
+      "did": "did:ethr:0x793ea9692Ada1900fBd0B80FFFEc6E431fe8b391",
+      "ent": {
+        "@type": "CollegeOrUniversity",
+        "name": "UniRoma1",
+        "sameAs": "http://http://www.uniroma1.it/"
+      }
+    },
+    {
+      "src": "this",
+      "did": "did:ethr:0x9e6316f44BaEeeE5d41A1070516cc5fA47BAF227",
+      "ent": {
+        "@type": "CollegeOrUniversity",
+        "name": "UniRoma2",
+        "sameAs": "http://http://www.uniroma2.it/"
+      }
+    },
+    {
+      "src": "this",
+      "did": "did:ethr:0xeee6f3258a5c92e4a6153a27e251312fe95a19ae",
+      "ent": {
+        "@type": "CollegeOrUniversity",
+        "name": "UniRoma3",
+        "sameAs": "http://http://www.uniroma3.it/",
+        "address": {
+          "@type": "Postal Address",
+          "streetAddress": "Via Negroli, 35 Ang. Sismondi",
+          "addressLocality": "Roma",
+          "addressRegion": "Lazio",
+          "postalCode": "20300"
+        }
+      }
+    },
+    {
+      "src": "this",
+      "did": "did:ethr:0x7jHkjd0ufl23LmWRs889xZBlaa8a5c92e4E8374q",
+      "ent": {
+        "@type": "CollegeOrUniversity",
+        "name": "Politecnico di Torino",
+        "sameAs": "http://http://www.polito.it/"
+      }
+    },
+    {
+      "src": "https://www.miur.gov.it/trsuted-contacts-list",
+      "did": null,
+      "ent": null
+    }
+  ]
+
+}
